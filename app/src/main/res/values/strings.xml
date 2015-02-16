@@ -4,6 +4,19 @@
     <string name="app_name">DrinKing</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="button_start_game">Game on!</string>
+    <string name="button_rules">Rules</string>
+    <string name="button_exit">Exit</string>
+    <string name="button_add_challenge">Add your own challenge</string>
+    <string name="button_add_player">Add player</string>
+    <string name="text_view_game_mode">Game mode</string>
+    <string name="text_view_solo">Solo</string>
+    <string name="text_view_team">Team</string>
+    <string name="button_set_tools">Set tools</string>
+    <string name="button_start_game_now">Start the game!</string>
+    <string name="title_activity_player_list">PlayerListActivity</string>
+    <string name="title_activity_add_player">AddPlayerActivity</string>
     <string name="title_activity_challenge">ChallengeActivity</string>
     <string name="button_win_text">WIN</string>
 
