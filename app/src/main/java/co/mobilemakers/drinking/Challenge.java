@@ -16,6 +16,11 @@ public class Challenge {
     public Challenge() {
     }
 
+    public Challenge(String name, String content) {
+        this.name = name;
+        this.content = content;
+    }
+
     public int getId() {
         return id;
     }
