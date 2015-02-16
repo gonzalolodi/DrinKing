@@ -12,15 +12,15 @@ import android.view.ViewGroup;
 import android.os.Build;
 
 
-public class StartActivity extends ActionBarActivity {
+public class AddPlayerActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start);
+        setContentView(R.layout.activity_add_player);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new StartFragment())
+                    .add(R.id.container, new AddPlayerFragment())
                     .commit();
         }
     }
@@ -29,7 +29,7 @@ public class StartActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_start, menu);
+        getMenuInflater().inflate(R.menu.menu_add_player, menu);
         return true;
     }
 
