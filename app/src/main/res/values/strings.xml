@@ -17,5 +17,7 @@
     <string name="button_start_game_now">Start the game!</string>
     <string name="title_activity_player_list">PlayerListActivity</string>
     <string name="title_activity_add_player">AddPlayerActivity</string>
+    <string name="title_activity_challenge">ChallengeActivity</string>
+    <string name="button_win_text">WIN</string>
 
 </resources>

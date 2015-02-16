@@ -24,6 +24,10 @@
             android:name=".AddPlayerActivity"
             android:label="@string/title_activity_add_player" >
         </activity>
+        <activity
+            android:name=".ChallengeActivity"
+            android:label="@string/title_activity_challenge" >
+        </activity>
     </application>
 
 </manifest>

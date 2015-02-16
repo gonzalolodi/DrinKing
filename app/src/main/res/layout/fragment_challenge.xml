@@ -1,0 +1,76 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context="co.mobilemakers.drinking.ChallengeFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Somebody drinks 6 sips"
+        android:id="@+id/text_view_penalty"
+        android:layout_gravity="center_horizontal" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left">
+
+            <ImageView
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:id="@+id/image_view_player_1"
+                android:src="@drawable/Placeholder_male_superhero_c" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_win_text"
+                android:id="@+id/button_win_player_1"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right">
+
+            <ImageView
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:id="@+id/image_view_player_2"
+                android:src="@drawable/Placeholder_male_superhero_c" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_win_text"
+                android:id="@+id/button_win_player_2"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Large Text"
+            android:id="@+id/text_view_challenge" />
+    </ScrollView>
+
+
+</LinearLayout>
