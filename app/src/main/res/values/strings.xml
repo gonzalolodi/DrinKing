@@ -19,7 +19,6 @@
     <string name="title_activity_add_player">AddPlayerActivity</string>
     <string name="title_activity_challenge">ChallengeActivity</string>
     <string name="button_win_text">WIN</string>
-    <string name="button_add_players">Add Players</string>
     <string name="edit_text_new_challenge_name">Enter the new challenge\'s name here</string>
     <string name="edit_text_new_challenge_content">Enter the challenge description here</string>
     <string name="button_add_new_challenge_done">Add Challenge</string>

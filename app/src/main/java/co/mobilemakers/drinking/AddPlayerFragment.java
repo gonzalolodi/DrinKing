@@ -27,4 +27,4 @@ public class AddPlayerFragment extends Fragment {
     }
 }
 
-}
+
