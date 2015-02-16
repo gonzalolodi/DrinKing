@@ -6,4 +6,5 @@ package co.mobilemakers.drinking;
 public class Challenge {
 
     String name;
+    String content;
 }
