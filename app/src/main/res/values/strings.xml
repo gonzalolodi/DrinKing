@@ -19,5 +19,7 @@
     <string name="title_activity_add_player">AddPlayerActivity</string>
     <string name="title_activity_challenge">ChallengeActivity</string>
     <string name="button_win_text">WIN</string>
+    <string name="button_add_players">Add Players</string>
+    <string name="button_confirm_player">Confirm Player</string>
 
 </resources>
