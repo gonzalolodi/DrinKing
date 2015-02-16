@@ -58,14 +58,6 @@
                 android:id="@+id/image_view_player_2"
                 android:src="@drawable/placeholder_male_superhero" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Player 2"
-                android:id="@+id/text_view_player_2"
-                android:layout_gravity="center_horizontal" />
-
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
