@@ -34,8 +34,13 @@ public class ChallengeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_challenge, container, false);
         mChallenges = retrieveChallenges();
+        wireUpChallengeText(rootView);
         prepareChallengeText();
         return rootView;
+    }
+
+    private void wireUpChallengeText(View rootView) {
+        mTextViewChallenge = (TextView) rootView.findViewById(R.id.text_view_challenge);
     }
 
     private void prepareChallengeText() {

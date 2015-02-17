@@ -20,7 +20,7 @@ public class StartActivity extends ActionBarActivity {
         setContentView(R.layout.activity_start);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new StartFragment())
+                    .add(R.id.container, new StartFragment()).addToBackStack(null)
                     .commit();
         }
     }

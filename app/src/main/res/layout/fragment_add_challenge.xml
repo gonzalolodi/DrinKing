@@ -21,6 +21,46 @@
         android:layout_weight="1"
         android:gravity="center_vertical|center_horizontal" />
 
+    <RadioGroup
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:id="@+id/radio_group_tool">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_button_ping_pong_ball_text"
+            android:id="@+id/radio_button_ping_pong_ball" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_button_cards_text"
+            android:id="@+id/radio_button_cards" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_button_dice_text"
+            android:id="@+id/radio_button_dice" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_button_plastic_cups_text"
+            android:id="@+id/radio_button_plastic_cups" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_button_no_tools"
+            android:id="@+id/radio_button_no_tools"
+            android:checked="true" />
+
+    </RadioGroup>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
