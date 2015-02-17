@@ -3,6 +3,7 @@ package co.mobilemakers.drinking;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,23 +25,37 @@ public class StartFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_start, container, false);
         wireUpButtons(rootView);
-        mButtonStartGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
         return rootView;
     }
 
     private void wireUpButtons(View rootView) {
-        mButtonStartGame=(Button)rootView.findViewById(R.id.button_start_game);
-        mButtonAddChallenge=(Button)rootView.findViewById(R.id.button_add_challenge);
-        mButtonRules=(Button)rootView.findViewById(R.id.button_rules);
+        mButtonStartGame = (Button)rootView.findViewById(R.id.button_start_game);
+        mButtonAddChallenge = (Button)rootView.findViewById(R.id.button_add_challenge);
+        mButtonRules = (Button)rootView.findViewById(R.id.button_rules);
+        View.OnClickListener onClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getFragmentManager();
+                switch (v.getId()){
+                    case R.id.button_start_game:
+                        fragmentManager.beginTransaction().
+                                replace(R.id.container, new PlayerListFragment()).addToBackStack(null).
+                                commit();
+                        break;
+                    case R.id.button_add_challenge:
+                        fragmentManager.beginTransaction().
+                                replace(R.id.container, new AddChallengeFragment()).addToBackStack(null).
+                                commit();
+                        break;
+                };
+            }
+        };
+        mButtonStartGame.setOnClickListener(onClickListener);
+        mButtonAddChallenge.setOnClickListener(onClickListener);
+        mButtonRules.setOnClickListener(onClickListener);
     }
 }

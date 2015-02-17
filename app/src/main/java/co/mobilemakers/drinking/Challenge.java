@@ -1,24 +1,43 @@
 package co.mobilemakers.drinking;
 
+import com.j256.ormlite.field.DatabaseField;
+
 /**
  * Created by Gonzalo on 16/02/2015.
  */
 public class Challenge {
 
+    public static final String CARDS = "cards";
+    public static final String PING_PONG_BALL = "ping pong ball";
+    public static final String DICE = "dice";
+    public static final String PLASTIC_CUPS = "plastic cups";
+    public static final String NO_TOOLS = "no tools";
+
     public static final String NAME = "name";
     public static final String CONTENT = "content";
-    public final static String ID = "_id";
+    public static final String ID = "_id";
+    public static final String TOOL = "tool";
 
-    private int id;
-    private String name;
-    private String content;
+    @DatabaseField(generatedId = true, columnName = ID) private int id;
+    @DatabaseField(columnName = NAME) private String name;
+    @DatabaseField(columnName = CONTENT) private String content;
+    @DatabaseField(columnName = TOOL) private String tool;
 
     public Challenge() {
     }
 
-    public Challenge(String name, String content) {
-        this.name = name;
+    public Challenge(String name, String content, String tool) {
         this.content = content;
+        this.name = name;
+        this.tool = tool;
+    }
+
+    public String getTool() {
+        return tool;
+    }
+
+    public void setTool(String tool) {
+        this.tool = tool;
     }
 
     public int getId() {

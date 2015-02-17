@@ -24,5 +24,10 @@
     <string name="button_add_new_challenge_done">Add Challenge</string>
     <string name="button_add_players">Add Players</string>
     <string name="button_confirm_player">Confirm Player</string>
+    <string name="radio_button_plastic_cups_text">Plastic Cups</string>
+    <string name="radio_button_cards_text">Cards</string>
+    <string name="radio_button_dice_text">Dice</string>
+    <string name="radio_button_ping_pong_ball_text">Ping Pong Ball</string>
+    <string name="radio_button_no_tools">No tools needed</string>
 
 </resources>
