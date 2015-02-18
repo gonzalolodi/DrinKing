@@ -33,6 +33,15 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/text_view_blue_team"
+            android:id="@+id/text_view_blue_team"
+            android:textColor="#ff0029ff"
+            android:textStyle="bold" />
+
         <Switch
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -41,7 +50,17 @@
             android:checked="false"
             android:textOn="Red"
             android:textOff="Blue"
-            android:enabled="true" />
+            android:enabled="true"
+            android:showText="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/text_view_red_team"
+            android:id="@+id/text_view_red_team"
+            android:textStyle="bold"
+            android:textColor="#ffff0007" />
 
     </LinearLayout>
 
@@ -49,5 +68,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_confirm_player"
-        android:id="@+id/button_confirm_player" />
+        android:id="@+id/button_confirm_player"
+        android:enabled="false"/>
 </LinearLayout>

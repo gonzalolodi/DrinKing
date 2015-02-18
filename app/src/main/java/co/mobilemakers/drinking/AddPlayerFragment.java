@@ -7,6 +7,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +35,7 @@ public class AddPlayerFragment extends Fragment {
     Switch mSwitchTeam;
     Player mPlayer;
     String mName, mTeam;
+    TextView mTeamBlue,mTeamRed;
 
     Bitmap mPhoto;
     byte[] mImage;
@@ -47,6 +51,13 @@ public class AddPlayerFragment extends Fragment {
         wireUpViews(rootView);
         prepareImageButton();
         prepareConfirmButtonListener();
+        mEditTextPlayername.addTextChangedListener(watcher);
+        if (getActivity().getIntent().getStringExtra(SelectModeFragment.GAME_MODE).equals("Solo")){
+            mSwitchTeam.setVisibility(View.INVISIBLE);
+            mTeamBlue.setVisibility(View.INVISIBLE);
+            mTeamBlue.setVisibility(View.INVISIBLE);
+
+        }
         return rootView;
     }
 
@@ -67,7 +78,7 @@ public class AddPlayerFragment extends Fragment {
                 preparePlayer();
                 mPlayer = new Player(mName, mTeam, mImage);
                 Bundle extrasBundle = new Bundle();
-                extrasBundle.putParcelable("player",mPlayer);
+                extrasBundle.putParcelable("player", mPlayer);
                 Activity activity = getActivity();
                 Intent intentResult = new Intent();
                 intentResult.putExtras(extrasBundle);
@@ -76,6 +87,29 @@ public class AddPlayerFragment extends Fragment {
             }
         });
     }
+
+    private final TextWatcher watcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            if (TextUtils.isEmpty(mEditTextPlayername.getText())) {
+                mButtonConfirmPlayer.setEnabled(false);
+            } else {
+                mButtonConfirmPlayer.setEnabled(true);
+            }
+        }
+
+        ;
+    };
 
     private void preparePlayer() {
         mName=mEditTextPlayername.getText().toString();
@@ -94,6 +128,8 @@ public class AddPlayerFragment extends Fragment {
         mPhotoPlayer=(ImageButton)rootView.findViewById(R.id.image_button_player_photo);
         mEditTextPlayername=(EditText)rootView.findViewById(R.id.edit_text_player_name);
         mSwitchTeam=(Switch)rootView.findViewById(R.id.switch_player_team);
+        mTeamRed=(TextView)rootView.findViewById(R.id.text_view_red_team);
+        mTeamBlue=(TextView)rootView.findViewById(R.id.text_view_blue_team);
     }
 
     private void convertBitmapImageToByteArray() {
