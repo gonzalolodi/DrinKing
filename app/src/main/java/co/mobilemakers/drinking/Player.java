@@ -10,12 +10,14 @@ public class Player implements Parcelable {
     public String name;
     public String team;
     byte[] image;
+    int score;
 
 
-    public Player(String name, String team, byte[] image) {
+    public Player(String name, String team, byte[] image, int score) {
         this.name = name;
         this.team = team;
         this.image = image;
+        this.score = score;
     }
 
     public byte[] getImage() {
@@ -49,6 +51,7 @@ public class Player implements Parcelable {
         team =source.readString();
         image = new byte[(source.readInt())];
         source.readByteArray(image);
+        score= source.readInt();
 
     }
 
@@ -59,11 +62,21 @@ public class Player implements Parcelable {
         return 0;
     }
 
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
         dest.writeString(team);
+
         dest.writeByteArray(image);
+        dest.writeInt(score);
     }
     public static final Parcelable.Creator<Player> CREATOR = new Parcelable.Creator<Player>() {
 

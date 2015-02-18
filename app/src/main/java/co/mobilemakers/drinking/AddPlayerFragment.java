@@ -35,6 +35,7 @@ public class AddPlayerFragment extends Fragment {
     final static Integer REQUEST_CODE = 0;
     Bitmap mPhoto;
     byte[] mImage;
+    int mScore;
 
     public AddPlayerFragment() {
         // Required empty public constructor
@@ -65,15 +66,8 @@ public class AddPlayerFragment extends Fragment {
         mButtonConfirmPlayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mName=mEditTextPlayername.getText().toString();
-                if (mSwitchTeam.isChecked()){
-                    mTeam="Red";
-                }
-                else{
-                    mTeam="Blue";
-                }
-                convertBitmapImageToByteArray();
-                mPlayer = new Player(mName, mTeam, mImage);
+                preparePlayer();
+                mPlayer = new Player(mName, mTeam, mImage,mScore);
                 mPlayers.add(mPlayer);
                 Bundle extrasBundle = new Bundle();
                 extrasBundle.putParcelableArrayList("players", mPlayers);
@@ -84,6 +78,18 @@ public class AddPlayerFragment extends Fragment {
                 activity.finish();
             }
         });
+    }
+
+    private void preparePlayer() {
+        mName=mEditTextPlayername.getText().toString();
+        if (mSwitchTeam.isChecked()){
+            mTeam="Red";
+        }
+        else{
+            mTeam="Blue";
+        }
+        mScore=0;
+        convertBitmapImageToByteArray();
     }
 
 
