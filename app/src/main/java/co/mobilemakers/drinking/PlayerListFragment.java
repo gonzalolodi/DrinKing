@@ -4,6 +4,7 @@ package co.mobilemakers.drinking;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
@@ -29,7 +30,7 @@ public class PlayerListFragment extends ListFragment {
     Player mPlayer;
 
 
-    final static Integer REQUEST_CODE = 1;
+    final static Integer REQUEST_CODE = 0;
 
     public PlayerListFragment() {
         // Required empty public constructor
@@ -39,10 +40,8 @@ public class PlayerListFragment extends ListFragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_player_list, container, false);
         wireUpViews(rootView);
-        List<Player> entries= new ArrayList<>();
-        mAdapter = new PlayerAdapter(getActivity(), entries);
-        setListAdapter(mAdapter);
         prepareButtonAddPlayerListener();
+        prepareListView();
         return rootView;
     }
 
@@ -62,29 +61,27 @@ public class PlayerListFragment extends ListFragment {
 
 
 
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
-                mPlayers=this.getArguments().getParcelableArrayList("players");
-                mPlayer = this.getArguments().getParcelable("player");
-                mPlayers.add(mPlayer);
-                Bundle extrasBundle = new Bundle();
-                extrasBundle.putParcelableArrayList("players", mPlayers);
+                mPlayer = data.getParcelableExtra("player");
                 mAdapter.add(mPlayer);
-
-
-
-
-
             }
         }
     }
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        prepareListView();
+    }
 
-
-
+    private void prepareListView() {
+        mPlayers= new ArrayList<>();
+        mAdapter = new PlayerAdapter(getActivity(), mPlayers);
+        setListAdapter(mAdapter);
+    }
 }
 
 

@@ -52,7 +52,7 @@ public class Player implements Parcelable {
 
         name =source.readString();
         team =source.readString();
-        image = new byte[(source.readInt())];
+        image = new byte[source.readInt()];
         source.readByteArray(image);
         score= source.readInt();
 
@@ -77,7 +77,7 @@ public class Player implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
         dest.writeString(team);
-
+        dest.writeInt(image.length);
         dest.writeByteArray(image);
         dest.writeInt(score);
     }
