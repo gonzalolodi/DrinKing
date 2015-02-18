@@ -1,6 +1,5 @@
 package co.mobilemakers.drinking;
 
-import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -10,17 +9,18 @@ import android.os.Parcelable;
 public class Player implements Parcelable {
 
     public final static String PLAYERS_ARRAY_LIST = "players";
-    public String name;
-    public String team;
-    byte[] image;
-    int score;
+
+    private String name;
+    private String team;
+    private byte[] image;
+    private int score;
 
 
-    public Player(String name, String team, byte[] image, int score) {
+    public Player(String name, String team, byte[] image) {
         this.name = name;
         this.team = team;
         this.image = image;
-        this.score = score;
+        this.score = 0;
     }
 
     public byte[] getImage() {
