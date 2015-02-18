@@ -66,6 +66,7 @@
         android:layout_height="wrap_content"
         android:text="@string/button_add_new_challenge_done"
         android:id="@+id/button_add_new_challenge_done"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:enabled="false" />
 
 </LinearLayout>

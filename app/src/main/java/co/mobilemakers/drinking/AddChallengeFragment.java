@@ -3,6 +3,7 @@ package co.mobilemakers.drinking;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
@@ -60,6 +62,9 @@ public class AddChallengeFragment extends Fragment {
                 try {
                     Dao<Challenge,Integer> dao = getDBHelper().getContactDao();
                     dao.create(challenge);
+                    Toast.makeText(getActivity(), "Challenge created",Toast.LENGTH_SHORT);
+                    FragmentManager fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction().replace(R.id.container, new StartFragment()).commit();
                 } catch (SQLException e) {
                     Log.e(LOG_TAG, "Failed to create DAO.", e);
                 }
