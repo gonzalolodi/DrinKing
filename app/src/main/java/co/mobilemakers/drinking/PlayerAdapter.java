@@ -3,6 +3,7 @@ package co.mobilemakers.drinking;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,13 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
         if (rowView != null) {
             TextView textViewName = (TextView) rowView.findViewById(R.id.text_view_player_name);
             textViewName.setText(mPlayers.get(position).getName());
+            if (mPlayers.get(position).getTeam().equals("Red")){
+                textViewName.setTextColor(Color.RED);
+            }
+            else{
+                textViewName.setTextColor(Color.BLUE);
+            }
+
             ImageView imageViewPhoto = (ImageView) rowView.findViewById(R.id.image_view_player_photo);
             Bitmap bmp = getBitmap(position);
             imageViewPhoto.setImageBitmap(bmp);
