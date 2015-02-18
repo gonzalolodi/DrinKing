@@ -29,5 +29,7 @@
     <string name="radio_button_dice_text">Dice</string>
     <string name="radio_button_ping_pong_ball_text">Ping Pong Ball</string>
     <string name="radio_button_no_tools">No tools needed</string>
+    <string name="switch_game_mode_team">Team</string>
+    <string name="switch_game_mode_solo">Solo</string>
 
 </resources>
