@@ -67,9 +67,6 @@ public class PlayerAdapter extends ArrayAdapter<Player> {
         bmp = BitmapFactory.decodeByteArray(image, 0, image.length, options);
         return bmp;
     }
-    public Player getContactItem(int position){
-        return mPlayers.get(position);
-    }
 
 }
 

@@ -12,7 +12,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_add_players"
+        android:text="@string/button_add_player"
         android:id="@+id/button_add_player"
         android:layout_gravity="right" />
 
