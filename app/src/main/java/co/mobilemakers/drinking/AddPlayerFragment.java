@@ -55,7 +55,11 @@ public class AddPlayerFragment extends Fragment {
         if (getActivity().getIntent().getStringExtra(SelectModeFragment.GAME_MODE).equals("Solo")){
             mSwitchTeam.setVisibility(View.INVISIBLE);
             mTeamBlue.setVisibility(View.INVISIBLE);
-            mTeamBlue.setVisibility(View.INVISIBLE);
+            mTeamRed.setVisibility(View.INVISIBLE);
+        }else{
+            mSwitchTeam.setVisibility(View.VISIBLE);
+            mTeamBlue.setVisibility(View.VISIBLE);
+            mTeamRed.setVisibility(View.VISIBLE);
 
         }
         return rootView;
