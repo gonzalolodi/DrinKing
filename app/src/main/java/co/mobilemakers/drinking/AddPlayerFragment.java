@@ -35,6 +35,7 @@ public class AddPlayerFragment extends Fragment {
     Switch mSwitchTeam;
     Player mPlayer;
     String mName, mTeam;
+    TextView mTeamBlue,mTeamRed;
 
     Bitmap mPhoto;
     byte[] mImage;
@@ -53,6 +54,9 @@ public class AddPlayerFragment extends Fragment {
         mEditTextPlayername.addTextChangedListener(watcher);
         if (getActivity().getIntent().getStringExtra(SelectModeFragment.GAME_MODE).equals("Solo")){
             mSwitchTeam.setVisibility(View.INVISIBLE);
+            mTeamBlue.setVisibility(View.INVISIBLE);
+            mTeamBlue.setVisibility(View.INVISIBLE);
+
         }
         return rootView;
     }
@@ -124,6 +128,8 @@ public class AddPlayerFragment extends Fragment {
         mPhotoPlayer=(ImageButton)rootView.findViewById(R.id.image_button_player_photo);
         mEditTextPlayername=(EditText)rootView.findViewById(R.id.edit_text_player_name);
         mSwitchTeam=(Switch)rootView.findViewById(R.id.switch_player_team);
+        mTeamRed=(TextView)rootView.findViewById(R.id.text_view_red_team);
+        mTeamBlue=(TextView)rootView.findViewById(R.id.text_view_blue_team);
     }
 
     private void convertBitmapImageToByteArray() {
