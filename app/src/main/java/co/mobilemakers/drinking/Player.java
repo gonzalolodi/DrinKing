@@ -7,6 +7,9 @@ import android.os.Parcelable;
  * Created by Agustin on 16/02/2015.
  */
 public class Player implements Parcelable {
+
+    public final static String PLAYERS_ARRAY_LIST = "players";
+
     public String name;
     public String team;
     byte[] image;

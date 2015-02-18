@@ -2,6 +2,7 @@ package co.mobilemakers.drinking;
 
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
@@ -9,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 
 /**
@@ -42,8 +45,9 @@ public class StartFragment extends Fragment {
                 FragmentManager fragmentManager = getFragmentManager();
                 switch (v.getId()){
                     case R.id.button_start_game:
+                        SelectModeFragment selectModeFragment = new SelectModeFragment();
                         fragmentManager.beginTransaction().
-                                replace(R.id.container, new PlayerListFragment()).addToBackStack(null).
+                                replace(R.id.container, selectModeFragment).addToBackStack(null).
                                 commit();
                         break;
                     case R.id.button_add_challenge:

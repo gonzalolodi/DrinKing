@@ -1,0 +1,35 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="200dp"
+    android:paddingBottom="200dp"
+    tools:context="co.mobilemakers.drinking.SelectModeFragment"
+    android:gravity="center_vertical|center_horizontal">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/text_view_game_mode"
+        android:id="@+id/text_view_game_mode"
+        android:layout_gravity="center_horizontal" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOn="@string/switch_game_mode_team"
+        android:textOff="@string/switch_game_mode_solo"
+        android:id="@+id/switch_game_mode"
+        android:padding="10dp"
+        android:checked="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_add_players"
+        android:id="@+id/button_add_players" />
+
+</LinearLayout>
