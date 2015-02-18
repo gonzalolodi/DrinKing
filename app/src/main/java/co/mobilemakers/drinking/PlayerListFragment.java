@@ -49,7 +49,9 @@ public class PlayerListFragment extends ListFragment {
         mButtonAddPlayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle bundle=getActivity().getIntent().getExtras();
                 Intent i = new Intent(getActivity(), AddPlayerActivity.class);
+                i.putExtras(bundle);
                 startActivityForResult(i, REQUEST_CODE);
             }
         });

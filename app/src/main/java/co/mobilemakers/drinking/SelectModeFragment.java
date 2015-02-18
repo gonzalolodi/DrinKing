@@ -43,11 +43,23 @@ public class SelectModeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), PlayerListActivity.class);
-                intent.putExtra(GAME_MODE, mSwitchGameMode.getText().toString());
+                String gameMode = getGameMode();
+                intent.putExtra(GAME_MODE, gameMode);
                 startActivity(intent);
             }
         });
         return rootView;
+    }
+
+    private String getGameMode() {
+        String gameMode;
+        if (mSwitchGameMode.isChecked()){
+            gameMode="Team";
+        }
+        else{
+            gameMode="Solo";
+        }
+        return gameMode;
     }
 
     private void wireUpSwitch(View rootView) {

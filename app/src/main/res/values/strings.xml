@@ -31,5 +31,7 @@
     <string name="radio_button_no_tools">No tools needed</string>
     <string name="switch_game_mode_team">Team</string>
     <string name="switch_game_mode_solo">Solo</string>
+    <string name="text_view_blue_team">Blue</string>
+    <string name="text_view_red_team">Red</string>
 
 </resources>
