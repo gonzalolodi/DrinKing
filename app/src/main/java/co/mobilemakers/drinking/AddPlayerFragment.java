@@ -32,7 +32,7 @@ public class AddPlayerFragment extends Fragment {
     Switch mSwitchTeam;
     Player mPlayer;
     String mName, mTeam;
-    final static Integer REQUEST_CODE = 0;
+
     Bitmap mPhoto;
     byte[] mImage;
 
@@ -53,7 +53,7 @@ public class AddPlayerFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == AddPlayerFragment.REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+        if (requestCode == PlayerListFragment.REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             mPhoto = (Bitmap) data.getExtras().get("data");
             mPhotoPlayer.setImageBitmap(mPhoto);
         }
@@ -104,11 +104,13 @@ public class AddPlayerFragment extends Fragment {
 
     private void prepareImageButton() {
 
+        mPhoto = BitmapFactory.decodeResource(getActivity().getResources(),R.drawable.placeholder_male_superhero);
+
         mPhotoPlayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(cameraIntent, AddPlayerFragment.REQUEST_CODE);
+                startActivityForResult(cameraIntent, PlayerListFragment.REQUEST_CODE);
             }
         });
     }

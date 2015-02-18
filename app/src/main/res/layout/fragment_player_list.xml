@@ -17,9 +17,9 @@
         android:layout_gravity="right" />
 
     <ListView
+        android:id="@android:id/list"
         android:layout_width="wrap_content"
         android:layout_height="265dp"
-        android:id="@+id/list_view_player_list"
         android:layout_weight="0.72" />
 
     <Button

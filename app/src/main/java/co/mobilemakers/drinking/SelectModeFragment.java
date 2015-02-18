@@ -43,7 +43,6 @@ public class SelectModeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), PlayerListActivity.class);
-                intent.putParcelableArrayListExtra(Player.PLAYERS_ARRAY_LIST, new ArrayList<Player>());
                 intent.putExtra(GAME_MODE, mSwitchGameMode.getText().toString());
                 startActivity(intent);
             }
