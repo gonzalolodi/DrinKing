@@ -35,7 +35,6 @@ public class AddPlayerFragment extends Fragment {
     final static Integer REQUEST_CODE = 0;
     Bitmap mPhoto;
     byte[] mImage;
-    int mScore;
 
     public AddPlayerFragment() {
         // Required empty public constructor
@@ -66,7 +65,7 @@ public class AddPlayerFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 preparePlayer();
-                mPlayer = new Player(mName, mTeam, mImage,mScore);
+                mPlayer = new Player(mName, mTeam, mImage);
                 Bundle extrasBundle = new Bundle();
                 extrasBundle.putParcelable("player",mPlayer);
                 Activity activity = getActivity();
