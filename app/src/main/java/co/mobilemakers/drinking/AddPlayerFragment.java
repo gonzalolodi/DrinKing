@@ -25,7 +25,7 @@ import java.util.ArrayList;
  */
 public class AddPlayerFragment extends Fragment {
 
-    ArrayList<Player> mPlayers;
+
     Button mButtonConfirmPlayer;
     ImageButton mPhotoPlayer;
     EditText mEditTextPlayername;
@@ -35,7 +35,6 @@ public class AddPlayerFragment extends Fragment {
     final static Integer REQUEST_CODE = 0;
     Bitmap mPhoto;
     byte[] mImage;
-    int mScore;
 
     public AddPlayerFragment() {
         // Required empty public constructor
@@ -47,7 +46,6 @@ public class AddPlayerFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_add_player, container, false);
         wireUpViews(rootView);
         prepareImageButton();
-        mPlayers=this.getArguments().getParcelableArrayList("players");
         prepareConfirmButtonListener();
         return rootView;
     }
@@ -67,10 +65,9 @@ public class AddPlayerFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 preparePlayer();
-                mPlayer = new Player(mName, mTeam, mImage,mScore);
-                mPlayers.add(mPlayer);
+                mPlayer = new Player(mName, mTeam, mImage);
                 Bundle extrasBundle = new Bundle();
-                extrasBundle.putParcelableArrayList("players", mPlayers);
+                extrasBundle.putParcelable("player",mPlayer);
                 Activity activity = getActivity();
                 Intent intentResult = new Intent();
                 intentResult.putExtras(extrasBundle);
@@ -88,7 +85,6 @@ public class AddPlayerFragment extends Fragment {
         else{
             mTeam="Blue";
         }
-        mScore=0;
         convertBitmapImageToByteArray();
     }
 

@@ -77,6 +77,7 @@ public class Player implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
         dest.writeString(team);
+
         dest.writeByteArray(image);
         dest.writeInt(score);
     }
