@@ -10,17 +10,17 @@ public class Player implements Parcelable {
 
     public final static String PLAYERS_ARRAY_LIST = "players";
 
-    public String name;
-    public String team;
-    byte[] image;
-    int score;
+    private String name;
+    private String team;
+    private byte[] image;
+    private int score;
 
 
-    public Player(String name, String team, byte[] image, int score) {
+    public Player(String name, String team, byte[] image) {
         this.name = name;
         this.team = team;
         this.image = image;
-        this.score = score;
+        this.score = 0;
     }
 
     public byte[] getImage() {
@@ -77,7 +77,6 @@ public class Player implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
         dest.writeString(team);
-
         dest.writeByteArray(image);
         dest.writeInt(score);
     }
