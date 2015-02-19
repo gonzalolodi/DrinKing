@@ -1,7 +1,10 @@
 package co.mobilemakers.drinking;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +39,20 @@ public class ChallengeFragment extends Fragment {
         mChallenges = retrieveChallenges();
         wireUpChallengeText(rootView);
         prepareChallengeText();
+        this.getView().setFocusableInTouchMode(true);
+
+        this.getView().setOnKeyListener( new View.OnKeyListener()
+        {
+            @Override
+            public boolean onKey( View v, int keyCode, KeyEvent event )
+            {
+                if( keyCode == KeyEvent.KEYCODE_BACK )
+                {
+                    return true;
+                }
+                return false;
+            }
+        } );
         return rootView;
     }
 
@@ -66,4 +83,5 @@ public class ChallengeFragment extends Fragment {
         }
         return challenges;
     }
+
 }

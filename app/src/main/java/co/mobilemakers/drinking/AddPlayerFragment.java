@@ -52,7 +52,7 @@ public class AddPlayerFragment extends Fragment {
         prepareImageButton();
         prepareConfirmButtonListener();
         mEditTextPlayername.addTextChangedListener(watcher);
-        if (getActivity().getIntent().getStringExtra(SelectModeFragment.GAME_MODE).equals("Solo")){
+        if (getActivity().getIntent().getStringExtra(SelectModeFragment.GAME_MODE).equals(SelectModeFragment.GAME_MODE_SOLO)){
             mSwitchTeam.setVisibility(View.INVISIBLE);
             mTeamBlue.setVisibility(View.INVISIBLE);
             mTeamRed.setVisibility(View.INVISIBLE);
@@ -118,10 +118,10 @@ public class AddPlayerFragment extends Fragment {
     private void preparePlayer() {
         mName=mEditTextPlayername.getText().toString();
         if (mSwitchTeam.isChecked()){
-            mTeam="Red";
+            mTeam=PlayerListFragment.RED;
         }
         else{
-            mTeam="Blue";
+            mTeam=PlayerListFragment.BLUE;
         }
         convertBitmapImageToByteArray();
     }
