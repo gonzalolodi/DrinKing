@@ -7,10 +7,10 @@ import com.j256.ormlite.field.DatabaseField;
  */
 public class Challenge {
 
-    public static final String CARDS = "cards";
-    public static final String PING_PONG_BALL = "ping pong ball";
-    public static final String DICE = "dice";
-    public static final String PLASTIC_CUPS = "plastic cups";
+    final static String PING_PONG_BALL = "ping_pong_balls_preference";
+    final static String CARDS = "cards_preference";
+    final static String DICE = "dice_preference";
+    final static String PLASTIC_CUPS = "plastic_cups_preference";
     public static final String NO_TOOLS = "no tools";
 
     public static final String NAME = "name";
