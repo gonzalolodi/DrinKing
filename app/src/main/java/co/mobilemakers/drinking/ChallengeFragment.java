@@ -47,22 +47,13 @@ public class ChallengeFragment extends Fragment {
     Button mButtonWinPlayer1;
     Button mButtonWinPlayer2;
     Bundle mBundle;
-    Boolean mPingPongBalls;
-    Boolean mCards;
-    Boolean mDice;
-    Boolean mPlasticCups;
 
     public ChallengeFragment() {
     }
-    final static String PING_PONG = "ping_pong_balls_preference";
-    final static String CARDS = "cards_preference";
-    final static String DICE = "dice_preference";
-    final static String PLASTIC_CUPS = "plastic_cups_preference";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_challenge, container, false);
-        getPreferences();
         mChallenges = retrieveChallenges();
         wireUpChallengeText(rootView);
         prepareChallengeText();
@@ -80,14 +71,6 @@ public class ChallengeFragment extends Fragment {
         }
         prepareWinButtonsAndNextChallenge(rootView);
         return rootView;
-    }
-
-    private void getPreferences() {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        mPingPongBalls=sharedPreferences.getBoolean(PING_PONG,true);
-        mCards=sharedPreferences.getBoolean(CARDS,true);
-        mDice=sharedPreferences.getBoolean(DICE,true);
-        mPlasticCups=sharedPreferences.getBoolean(PLASTIC_CUPS,true);
     }
 
     private void preparePlayer2Solo() {
@@ -177,7 +160,11 @@ public class ChallengeFragment extends Fragment {
     }
 
     private void prepareChallengeText() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         Challenge challenge = mChallenges.get(mRandom.nextInt(mChallenges.size()));
+        while (!sharedPreferences.getBoolean(challenge.getTool(),false)){
+            challenge = mChallenges.get(mRandom.nextInt(mChallenges.size()));
+        }
         mTextViewChallenge.setText(challenge.getContent());
         mTextViewChallengeTitle.setText(challenge.getName());
     }
