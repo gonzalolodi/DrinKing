@@ -11,6 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,9 +21,9 @@ import java.util.List;
 public class PlayerAdapter extends ArrayAdapter<Player> {
 
     Context mContext;
-    List<Player> mPlayers;
+    ArrayList<Player> mPlayers;
 
-    public PlayerAdapter(Context context, List<Player> players) {
+    public PlayerAdapter(Context context, ArrayList<Player> players) {
         super(context, R.layout.player_item, players);
         mContext = context;
         mPlayers= players;
