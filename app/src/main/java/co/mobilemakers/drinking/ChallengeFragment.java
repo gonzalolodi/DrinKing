@@ -89,8 +89,10 @@ public class ChallengeFragment extends Fragment {
         if (sum == 10) {
             FragmentManager fragmentManager = getFragmentManager();
             Bundle bundle = new Bundle();
-            bundle.putParcelableArrayList(FinalScoreFragment.WINNER_TEAM, mTeamBlue);
+            bundle.putString(SelectModeFragment.GAME_MODE, mGameMode);
+            bundle.putString(FinalScoreFragment.WINNER_TEAM, FinalScoreFragment.WINNER_TEAM_BLUE);
             FinalScoreFragment finalScoreFragment = new FinalScoreFragment();
+            finalScoreFragment.setArguments(bundle);
             fragmentManager.beginTransaction().replace(R.id.container, finalScoreFragment).commit();
         }
     }
@@ -103,8 +105,10 @@ public class ChallengeFragment extends Fragment {
         if (sum == 10) {
             FragmentManager fragmentManager = getFragmentManager();
             Bundle bundle = new Bundle();
-            bundle.putParcelableArrayList(FinalScoreFragment.WINNER_TEAM, mTeamRed);
+            bundle.putString(SelectModeFragment.GAME_MODE, mGameMode);
+            bundle.putString(FinalScoreFragment.WINNER_TEAM, FinalScoreFragment.WINNER_TEAM_RED);
             FinalScoreFragment finalScoreFragment = new FinalScoreFragment();
+            finalScoreFragment.setArguments(bundle);
             fragmentManager.beginTransaction().replace(R.id.container, finalScoreFragment).commit();
         }
     }
@@ -115,6 +119,7 @@ public class ChallengeFragment extends Fragment {
                 FragmentManager fragmentManager = getFragmentManager();
                 FinalScoreFragment finalScoreFragment = new FinalScoreFragment();
                 Bundle bundle = new Bundle();
+                bundle.putString(SelectModeFragment.GAME_MODE, mGameMode);
                 bundle.putParcelable(FinalScoreFragment.WINNER, p);
                 finalScoreFragment.setArguments(bundle);
                 fragmentManager.beginTransaction().replace(R.id.container, finalScoreFragment).commit();
