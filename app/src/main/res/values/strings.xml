@@ -33,5 +33,14 @@
     <string name="switch_game_mode_solo">Solo</string>
     <string name="text_view_blue_team">Blue</string>
     <string name="text_view_red_team">Red</string>
+    <string name="action_bar_title">DrinkKing</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="set_preferences">Select your available tools</string>
+    <string name="ping_pong_balls">Ping Pong balls</string>
+    <string name="cards">Cards</string>
+    <string name="dice">Dice</string>
+    <string name="plastic_cups">Plastic cups</string>
+    <string name="no_tools_needed">No tools needed</string>
+    <string name="pref_difficulty_summary">Select available</string>
 
 </resources>
