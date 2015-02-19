@@ -25,6 +25,9 @@ public class SelectModeFragment extends Fragment {
     Button mButtonAddPlayers;
 
     public static final String GAME_MODE = "game mode";
+    public static final String GAME_MODE_SOLO = "Solo";
+    public static final String GAME_MODE_TEAM = "Team";
+
 
 
     public SelectModeFragment() {
@@ -43,8 +46,7 @@ public class SelectModeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), PlayerListActivity.class);
-                String gameMode = getGameMode();
-                intent.putExtra(GAME_MODE, gameMode);
+                intent.putExtra(GAME_MODE, getGameMode());
                 startActivity(intent);
             }
         });
@@ -54,10 +56,10 @@ public class SelectModeFragment extends Fragment {
     private String getGameMode() {
         String gameMode;
         if (mSwitchGameMode.isChecked()){
-            gameMode="Team";
+            gameMode = GAME_MODE_TEAM;
         }
         else{
-            gameMode="Solo";
+            gameMode = GAME_MODE_SOLO;
         }
         return gameMode;
     }

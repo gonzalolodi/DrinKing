@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,11 +27,15 @@ public class PlayerListFragment extends ListFragment {
 
     PlayerAdapter mAdapter;
     Button mButtonAddPlayer;
+    Button mButtonStartGame;
     ArrayList<Player> mPlayers;
     Player mPlayer;
+    String mGameMode;
 
 
-    final static Integer REQUEST_CODE = 0;
+    public final static Integer REQUEST_CODE = 0;
+    public final static String BLUE = "Blue";
+    public final static String RED = "Red";
 
     public PlayerListFragment() {
         // Required empty public constructor
@@ -42,6 +47,26 @@ public class PlayerListFragment extends ListFragment {
         wireUpViews(rootView);
         prepareButtonAddPlayerListener();
         prepareListView();
+        mGameMode = getActivity().getIntent().getStringExtra(SelectModeFragment.GAME_MODE);
+        mButtonStartGame = (Button) rootView.findViewById(R.id.button_initiate_game);
+        mButtonStartGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getFragmentManager();
+                List<Player> teamRed = new ArrayList<Player>();
+                List<Player> teamBlue = new ArrayList<Player>();
+                if (mGameMode.equals(SelectModeFragment.GAME_MODE_TEAM)) {
+                    for (Player p:mAdapter.mPlayers) {
+                        if (p.getTeam().equals(RED)) {
+                            teamRed.add(p);
+                        } else {
+                            teamBlue.add(p);
+                        }
+                    }
+                };
+
+            }
+        });
         return rootView;
     }
 
@@ -49,9 +74,8 @@ public class PlayerListFragment extends ListFragment {
         mButtonAddPlayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle=getActivity().getIntent().getExtras();
                 Intent i = new Intent(getActivity(), AddPlayerActivity.class);
-                i.putExtras(bundle);
+                i.putExtra(SelectModeFragment.GAME_MODE, mGameMode);
                 startActivityForResult(i, REQUEST_CODE);
             }
         });
