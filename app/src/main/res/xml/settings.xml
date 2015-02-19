@@ -4,18 +4,22 @@
         <CheckBoxPreference
             android:key="ping_pong_balls_preference"
             android:title="@string/ping_pong_balls"
+            android:defaultValue="true"/>
             />
         <CheckBoxPreference
             android:key="cards_preference"
             android:title="@string/cards"
+            android:defaultValue="true"/>
             />
         <CheckBoxPreference
             android:key="dice_preference"
             android:title="@string/dice"
+            android:defaultValue="true"/>
             />
         <CheckBoxPreference
             android:key="plastic_cups_preference"
             android:title="@string/plastic_cups"
+            android:defaultValue="true"/>
             />
     </PreferenceCategory>
 </PreferenceScreen>
