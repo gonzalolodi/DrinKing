@@ -1,5 +1,6 @@
 package co.mobilemakers.drinking;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -18,11 +19,18 @@ public class StartActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+        customizeActionBar();
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new StartFragment()).addToBackStack(null)
                     .commit();
         }
+    }
+
+    private void customizeActionBar() {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(R.string.action_bar_title);
+        actionBar.setDisplayShowHomeEnabled(true);
     }
 
 
@@ -40,6 +48,12 @@ public class StartActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        switch (id) {
+            case R.id.action_settings:
+                Intent intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
+                break;
+        }
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
@@ -48,8 +62,5 @@ public class StartActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
 
 }
