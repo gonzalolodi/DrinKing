@@ -1,8 +1,10 @@
 package co.mobilemakers.drinking;
 
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
@@ -11,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
@@ -44,16 +47,22 @@ public class ChallengeFragment extends Fragment {
     Button mButtonWinPlayer1;
     Button mButtonWinPlayer2;
     Bundle mBundle;
-
-
+    Boolean mPingPongBalls;
+    Boolean mCards;
+    Boolean mDice;
+    Boolean mPlasticCups;
 
     public ChallengeFragment() {
     }
-
+    final static String PING_PONG = "ping_pong_balls_preference";
+    final static String CARDS = "cards_preference";
+    final static String DICE = "dice_preference";
+    final static String PLASTIC_CUPS = "plastic_cups_preference";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_challenge, container, false);
+        getPreferences();
         mChallenges = retrieveChallenges();
         wireUpChallengeText(rootView);
         prepareChallengeText();
@@ -71,6 +80,14 @@ public class ChallengeFragment extends Fragment {
         }
         prepareWinButtonsAndNextChallenge(rootView);
         return rootView;
+    }
+
+    private void getPreferences() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        mPingPongBalls=sharedPreferences.getBoolean(PING_PONG,true);
+        mCards=sharedPreferences.getBoolean(CARDS,true);
+        mDice=sharedPreferences.getBoolean(DICE,true);
+        mPlasticCups=sharedPreferences.getBoolean(PLASTIC_CUPS,true);
     }
 
     private void preparePlayer2Solo() {

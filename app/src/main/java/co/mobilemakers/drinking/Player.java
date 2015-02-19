@@ -8,7 +8,6 @@ import android.os.Parcelable;
  */
 public class Player implements Parcelable {
 
-    public final static String PLAYERS_ARRAY_LIST = "players";
 
     private String name;
     private String team;

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/set_preferences">
+        <CheckBoxPreference
+            android:key="ping_pong_balls_preference"
+            android:title="@string/ping_pong_balls"
+            android:defaultValue="true"/>
+            />
+        <CheckBoxPreference
+            android:key="cards_preference"
+            android:title="@string/cards"
+            android:defaultValue="true"/>
+            />
+        <CheckBoxPreference
+            android:key="dice_preference"
+            android:title="@string/dice"
+            android:defaultValue="true"/>
+            />
+        <CheckBoxPreference
+            android:key="plastic_cups_preference"
+            android:title="@string/plastic_cups"
+            android:defaultValue="true"/>
+            />
+    </PreferenceCategory>
+</PreferenceScreen>
+
