@@ -160,11 +160,7 @@ public class ChallengeFragment extends Fragment {
     }
 
     private void prepareChallengeText() {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         Challenge challenge = mChallenges.get(mRandom.nextInt(mChallenges.size()));
-        while (!sharedPreferences.getBoolean(challenge.getTool(),false)){
-            challenge = mChallenges.get(mRandom.nextInt(mChallenges.size()));
-        }
         mTextViewChallenge.setText(challenge.getContent());
         mTextViewChallengeTitle.setText(challenge.getName());
     }
