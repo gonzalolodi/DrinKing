@@ -36,6 +36,9 @@ public class PlayerListFragment extends ListFragment {
     public final static Integer REQUEST_CODE = 0;
     public final static String BLUE = "Blue";
     public final static String RED = "Red";
+    public final static String TEAM_RED = "team red";
+    public final static String TEAM_BLUE = "team blue";
+    public final static String UNIQUE_TEAM = "unique team";
 
     public PlayerListFragment() {
         // Required empty public constructor
@@ -47,14 +50,22 @@ public class PlayerListFragment extends ListFragment {
         wireUpViews(rootView);
         prepareButtonAddPlayerListener();
         prepareListView();
-        mGameMode = getActivity().getIntent().getStringExtra(SelectModeFragment.GAME_MODE);
+        setGameMode();
+        prepareButtonStartGameAndSetTeams(rootView);
+        return rootView;
+    }
+
+    private void prepareButtonStartGameAndSetTeams(View rootView) {
         mButtonStartGame = (Button) rootView.findViewById(R.id.button_initiate_game);
         mButtonStartGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager fragmentManager = getFragmentManager();
-                List<Player> teamRed = new ArrayList<Player>();
-                List<Player> teamBlue = new ArrayList<Player>();
+                ChallengeFragment challengeFragment = new ChallengeFragment();
+                ArrayList<Player> teamRed = new ArrayList<Player>();
+                ArrayList<Player> teamBlue = new ArrayList<Player>();
+                Bundle bundle = new Bundle();
+                bundle.putString(SelectModeFragment.GAME_MODE, mGameMode);
                 if (mGameMode.equals(SelectModeFragment.GAME_MODE_TEAM)) {
                     for (Player p:mAdapter.mPlayers) {
                         if (p.getTeam().equals(RED)) {
@@ -63,11 +74,19 @@ public class PlayerListFragment extends ListFragment {
                             teamBlue.add(p);
                         }
                     }
-                };
-
+                    bundle.putParcelableArrayList(TEAM_RED, teamRed);
+                    bundle.putParcelableArrayList(TEAM_BLUE, teamBlue);
+                } else {
+                    bundle.putParcelableArrayList(UNIQUE_TEAM, mAdapter.mPlayers);
+                }
+                challengeFragment.setArguments(bundle);
+                fragmentManager.beginTransaction().replace(R.id.container, challengeFragment).commit();
             }
         });
-        return rootView;
+    }
+
+    private void setGameMode() {
+        mGameMode = this.getArguments().getString(SelectModeFragment.GAME_MODE);
     }
 
     private void prepareButtonAddPlayerListener() {

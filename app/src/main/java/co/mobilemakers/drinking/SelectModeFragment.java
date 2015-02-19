@@ -45,9 +45,13 @@ public class SelectModeFragment extends Fragment {
         mButtonAddPlayers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), PlayerListActivity.class);
-                intent.putExtra(GAME_MODE, getGameMode());
-                startActivity(intent);
+                Bundle bundle = new Bundle();
+                bundle.putString(GAME_MODE, getGameMode());
+                PlayerListFragment playerListFragment = new PlayerListFragment();
+                playerListFragment.setArguments(bundle);
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.container, playerListFragment).
+                        addToBackStack(null).commit();
             }
         });
         return rootView;
