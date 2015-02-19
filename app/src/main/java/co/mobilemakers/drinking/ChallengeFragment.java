@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,8 @@ import android.widget.Toast;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 
+import java.io.FileDescriptor;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +51,8 @@ public class ChallengeFragment extends Fragment {
     Button mButtonWinPlayer2;
     Bundle mBundle;
 
+
+
     public ChallengeFragment() {
     }
 
@@ -63,15 +68,64 @@ public class ChallengeFragment extends Fragment {
         wireUpPlayersView(rootView);
         if (mGameMode.equals(SelectModeFragment.GAME_MODE_SOLO)) {
             retrieveUniqueTeam();
+            checkIfThereIsAWinner();
             preparePlayer1Solo();
             preparePlayer2Solo();
         } else {
             retrieveTeams();
+            checkIfTeamRedIsTheWinner();
+            checkIfTeamBlueIsTheWinner();
             prepareRedTeamPlayerView();
             prepareBlueTeamPlayerView();
         }
         prepareWinButtonsAndNextChallenge(rootView);
         return rootView;
+    }
+
+    private void checkIfTeamBlueIsTheWinner() {
+        int sum = 0;
+        for (Player p:mTeamBlue) {
+            sum =+ p.getScore();
+        }
+        if (sum == 10) {
+            FragmentManager fragmentManager = getFragmentManager();
+            Bundle bundle = new Bundle();
+            bundle.putString(SelectModeFragment.GAME_MODE, mGameMode);
+            bundle.putString(FinalScoreFragment.WINNER_TEAM, FinalScoreFragment.WINNER_TEAM_BLUE);
+            FinalScoreFragment finalScoreFragment = new FinalScoreFragment();
+            finalScoreFragment.setArguments(bundle);
+            fragmentManager.beginTransaction().replace(R.id.container, finalScoreFragment).commit();
+        }
+    }
+
+    private void checkIfTeamRedIsTheWinner() {
+        int sum = 0;
+        for (Player p:mTeamRed) {
+            sum =+ p.getScore();
+        }
+        if (sum == 10) {
+            FragmentManager fragmentManager = getFragmentManager();
+            Bundle bundle = new Bundle();
+            bundle.putString(SelectModeFragment.GAME_MODE, mGameMode);
+            bundle.putString(FinalScoreFragment.WINNER_TEAM, FinalScoreFragment.WINNER_TEAM_RED);
+            FinalScoreFragment finalScoreFragment = new FinalScoreFragment();
+            finalScoreFragment.setArguments(bundle);
+            fragmentManager.beginTransaction().replace(R.id.container, finalScoreFragment).commit();
+        }
+    }
+
+    private void checkIfThereIsAWinner() {
+        for (Player p:mTeamUnique) {
+            if (p.getScore() == 5) {
+                FragmentManager fragmentManager = getFragmentManager();
+                FinalScoreFragment finalScoreFragment = new FinalScoreFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString(SelectModeFragment.GAME_MODE, mGameMode);
+                bundle.putParcelable(FinalScoreFragment.WINNER, p);
+                finalScoreFragment.setArguments(bundle);
+                fragmentManager.beginTransaction().replace(R.id.container, finalScoreFragment).commit();
+            }
+        }
     }
 
     private void preparePlayer2Solo() {

@@ -44,7 +44,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/button_win_text"
                 android:id="@+id/button_win_player_1"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                style="@style/btnStyleArsenic" />
         </LinearLayout>
 
         <LinearLayout
@@ -73,7 +74,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/button_win_text"
                 android:id="@+id/button_win_player_2"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                style="@style/btnStyleArsenic" />
         </LinearLayout>
     </LinearLayout>
 
