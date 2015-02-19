@@ -17,10 +17,6 @@
             android:key="plastic_cups_preference"
             android:title="@string/plastic_cups"
             />
-        <CheckBoxPreference
-            android:key="no_tools_preference"
-            android:title="@string/no_tools_needed"
-            />
     </PreferenceCategory>
 </PreferenceScreen>
 

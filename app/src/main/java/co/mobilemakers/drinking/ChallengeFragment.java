@@ -46,8 +46,10 @@ public class ChallengeFragment extends Fragment {
     Button mButtonWinPlayer1;
     Button mButtonWinPlayer2;
     Bundle mBundle;
-
-
+    Boolean mPingPongBalls;
+    Boolean mCards;
+    Boolean mDice;
+    Boolean mPlasticCups;
 
     public ChallengeFragment() {
     }
