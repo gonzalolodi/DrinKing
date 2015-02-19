@@ -47,22 +47,21 @@ public class AddChallengeFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_add_challenge, container, false);
         wireUpEditTexts(rootView);
-        prepareRadioGroupAndGetPickedButton(rootView);
         prepareButtonAndSetOnClickListener(rootView);
-
         return rootView;
     }
 
-    private void prepareButtonAndSetOnClickListener(View rootView) {
+    private void prepareButtonAndSetOnClickListener(final View rootView) {
         mButtonAddChallenge = (Button) rootView.findViewById(R.id.button_add_new_challenge_done);
         mButtonAddChallenge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                prepareRadioGroupAndGetPickedButton(rootView);
                 Challenge challenge = new Challenge(mEditTextNewChallengeName.getText().toString(),mEditTextNewChallengeContent.getText().toString(), mTool);
                 try {
                     Dao<Challenge,Integer> dao = getDBHelper().getContactDao();
                     dao.create(challenge);
-                    Toast.makeText(getActivity(), "Challenge created",Toast.LENGTH_SHORT);
+                    Toast.makeText(getActivity(), "Challenge created",Toast.LENGTH_SHORT).show();
                     FragmentManager fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction().replace(R.id.container, new StartFragment()).commit();
                 } catch (SQLException e) {
