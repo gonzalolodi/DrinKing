@@ -5,9 +5,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,6 +30,7 @@ public class FinalScoreFragment extends Fragment {
 
     ImageView mImageViewWinner;
     TextView mTextViewTeamWinner;
+    Button mButtonRestart;
 
     public FinalScoreFragment() {
         // Required empty public constructor
@@ -41,15 +44,35 @@ public class FinalScoreFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_final_score, container, false);
         mBundle = this.getArguments();
         mGameMode = mBundle.getString(SelectModeFragment.GAME_MODE);
+        wiringUpWinnerView(rootView);
+        prepareButtonRestart(rootView);
+        displayingWinnerView();
+        return rootView;
+    }
+
+    private void wiringUpWinnerView(View rootView) {
         mImageViewWinner = (ImageView) rootView.findViewById(R.id.image_view_winner);
         mTextViewTeamWinner = (TextView) rootView.findViewById(R.id.text_view_winner);
+    }
+
+    private void displayingWinnerView() {
         if (mGameMode.equals(SelectModeFragment.GAME_MODE_SOLO)) {
             Player winner = mBundle.getParcelable(WINNER);
             mImageViewWinner.setImageBitmap(getBitmap(winner));
         } else {
             mTextViewTeamWinner.setText(mBundle.getString(FinalScoreFragment.WINNER_TEAM));
         }
-        return rootView;
+    }
+
+    private void prepareButtonRestart(View rootView) {
+        mButtonRestart = (Button) rootView.findViewById(R.id.button_restart_game);
+        mButtonRestart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.container, new StartFragment());
+            }
+        });
     }
 
     private Bitmap getBitmap(Player player) {
