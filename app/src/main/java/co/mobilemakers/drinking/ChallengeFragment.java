@@ -3,24 +3,21 @@ package co.mobilemakers.drinking;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 
-import java.io.FileDescriptor;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +37,8 @@ public class ChallengeFragment extends Fragment {
     int mRedPlayer;
     int mBluePlayer;
     String mGameMode;
+    String mPenaltyText;
+    int mPenaltyDrinks;
 
     TextView mTextViewChallenge;
     TextView mTextViewChallengeTitle;
@@ -50,6 +49,7 @@ public class ChallengeFragment extends Fragment {
     Button mButtonWinPlayer1;
     Button mButtonWinPlayer2;
     Bundle mBundle;
+    TextView mTextViewPenalty;
 
 
 
@@ -61,25 +61,65 @@ public class ChallengeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_challenge, container, false);
         mChallenges = retrieveChallenges();
+        mTextViewPenalty = (TextView) rootView.findViewById(R.id.text_view_penalty);
         wireUpChallengeText(rootView);
         prepareChallengeText();
         mBundle = this.getArguments();
         mGameMode = mBundle.getString(SelectModeFragment.GAME_MODE);
         wireUpPlayersView(rootView);
+        setPenaltyAmountOfDrinks();
         if (mGameMode.equals(SelectModeFragment.GAME_MODE_SOLO)) {
             retrieveUniqueTeam();
             checkIfThereIsAWinner();
             preparePlayer1Solo();
             preparePlayer2Solo();
+            preparePenaltyTextSoloMode();
         } else {
             retrieveTeams();
             checkIfTeamRedIsTheWinner();
             checkIfTeamBlueIsTheWinner();
+            preparePenaltyTextTeamMode();
             prepareRedTeamPlayerView();
             prepareBlueTeamPlayerView();
         }
+        setTextPenalty();
         prepareWinButtonsAndNextChallenge(rootView);
         return rootView;
+    }
+
+    private void setTextPenalty() {
+        mTextViewPenalty.setText(mPenaltyText);
+    }
+
+    private void preparePenaltyTextTeamMode() {
+        int penaltySelection = mRandom.nextInt(4);
+        switch (penaltySelection) {
+            case 0:
+                Player playerBlue = mTeamBlue.get(mRandom.nextInt(mTeamBlue.size()));
+                mPenaltyText = String.format(getString(R.string.has_to_drink),playerBlue.getName()) + mPenaltyDrinks;
+                break;
+            case 1:
+                Player playerRed = mTeamBlue.get(mRandom.nextInt(mTeamBlue.size()));
+                mPenaltyText = String.format(getString(R.string.has_to_drink),playerRed.getName()) + mPenaltyDrinks;
+                break;
+            case 2:
+                mPenaltyText = String.format(getString(R.string.has_to_drink),"Blue Team") + mPenaltyDrinks;
+                mTextViewPenalty.setTextColor(Color.BLUE);
+                break;
+            case 3:
+                mPenaltyText = String.format(getString(R.string.has_to_drink),"Red Team") + mPenaltyDrinks;
+                mTextViewPenalty.setTextColor(Color.RED);
+                break;
+        }
+    }
+
+    private void preparePenaltyTextSoloMode() {
+        Player playerWithPenalty = mTeamUnique.get(mRandom.nextInt(mTeamUnique.size()));
+        mPenaltyText = String.format(getString(R.string.has_to_drink),playerWithPenalty.getName()) + mPenaltyDrinks;
+    }
+
+    private void setPenaltyAmountOfDrinks() {
+        mPenaltyDrinks = mRandom.nextInt(5) + 1;
     }
 
     private void checkIfTeamBlueIsTheWinner() {
