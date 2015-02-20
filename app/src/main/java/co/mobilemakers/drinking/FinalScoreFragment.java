@@ -70,7 +70,7 @@ public class FinalScoreFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.container, new StartFragment());
+                fragmentManager.beginTransaction().replace(R.id.container, new StartFragment()).commit();
             }
         });
     }
