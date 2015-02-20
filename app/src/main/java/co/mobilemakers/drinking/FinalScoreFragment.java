@@ -3,6 +3,7 @@ package co.mobilemakers.drinking;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -21,8 +22,8 @@ public class FinalScoreFragment extends Fragment {
 
     public static final String WINNER = "winner";
     public static final String WINNER_TEAM = "winner team";
-    public static final String WINNER_TEAM_BLUE = "blue team wins";
-    public static final String WINNER_TEAM_RED = "red team wins";
+    public static final String WINNER_TEAM_BLUE = "Blue Team wins";
+    public static final String WINNER_TEAM_RED = "Red Team wins";
 
 
     Bundle mBundle;
@@ -65,8 +66,10 @@ public class FinalScoreFragment extends Fragment {
             mTextViewTeamWinner.setText(teamWinner);
             if (teamWinner.equals(WINNER_TEAM_BLUE)) {
                 mImageViewWinner.setImageDrawable(getResources().getDrawable(R.drawable.keep_calm_blue));
+                mTextViewTeamWinner.setTextColor(Color.BLUE);
             } else {
                 mImageViewWinner.setImageDrawable(getResources().getDrawable(R.drawable.keep_calm_red));
+                mTextViewTeamWinner.setTextColor(Color.RED);
             }
         }
     }
