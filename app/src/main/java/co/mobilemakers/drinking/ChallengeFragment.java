@@ -125,13 +125,15 @@ public class ChallengeFragment extends Fragment {
     private void checkIfTeamBlueIsTheWinner() {
         int sum = 0;
         for (Player p:mTeamBlue) {
-            sum =+ p.getScore();
+            sum += p.getScore();
         }
         if (sum == 10) {
             FragmentManager fragmentManager = getFragmentManager();
             Bundle bundle = new Bundle();
             bundle.putString(SelectModeFragment.GAME_MODE, mGameMode);
             bundle.putString(FinalScoreFragment.WINNER_TEAM, FinalScoreFragment.WINNER_TEAM_BLUE);
+            bundle.putParcelableArrayList(PlayerListFragment.TEAM_BLUE, mTeamBlue);
+            bundle.putParcelableArrayList(PlayerListFragment.TEAM_RED, mTeamRed);
             FinalScoreFragment finalScoreFragment = new FinalScoreFragment();
             finalScoreFragment.setArguments(bundle);
             fragmentManager.beginTransaction().replace(R.id.container, finalScoreFragment).commit();
@@ -141,13 +143,15 @@ public class ChallengeFragment extends Fragment {
     private void checkIfTeamRedIsTheWinner() {
         int sum = 0;
         for (Player p:mTeamRed) {
-            sum =+ p.getScore();
+            sum += p.getScore();
         }
         if (sum == 10) {
             FragmentManager fragmentManager = getFragmentManager();
             Bundle bundle = new Bundle();
             bundle.putString(SelectModeFragment.GAME_MODE, mGameMode);
             bundle.putString(FinalScoreFragment.WINNER_TEAM, FinalScoreFragment.WINNER_TEAM_RED);
+            bundle.putParcelableArrayList(PlayerListFragment.TEAM_RED, mTeamRed);
+            bundle.putParcelableArrayList(PlayerListFragment.TEAM_BLUE, mTeamBlue);
             FinalScoreFragment finalScoreFragment = new FinalScoreFragment();
             finalScoreFragment.setArguments(bundle);
             fragmentManager.beginTransaction().replace(R.id.container, finalScoreFragment).commit();
@@ -162,6 +166,7 @@ public class ChallengeFragment extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putString(SelectModeFragment.GAME_MODE, mGameMode);
                 bundle.putParcelable(FinalScoreFragment.WINNER, p);
+                bundle.putParcelableArrayList(PlayerListFragment.UNIQUE_TEAM, mTeamUnique);
                 finalScoreFragment.setArguments(bundle);
                 fragmentManager.beginTransaction().replace(R.id.container, finalScoreFragment).commit();
             }

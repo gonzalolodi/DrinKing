@@ -23,6 +23,7 @@ import com.squareup.okhttp.Response;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
 
 /**
@@ -42,6 +43,7 @@ public class FinalScoreFragment extends Fragment {
     ImageView mImageViewWinner;
     TextView mTextViewTeamWinner;
     Button mButtonRestart;
+    Button mButtonNewGame;
     TextView mTextViewQuotes;
 
     public FinalScoreFragment() {
@@ -132,14 +134,47 @@ public class FinalScoreFragment extends Fragment {
     }
 
     private void prepareButtonRestart(View rootView) {
-        mButtonRestart = (Button) rootView.findViewById(R.id.button_restart_game);
-        mButtonRestart.setOnClickListener(new View.OnClickListener() {
+        mButtonRestart = (Button) rootView.findViewById(R.id.button_restart);
+        mButtonNewGame = (Button) rootView.findViewById(R.id.button_new_game);
+        View.OnClickListener onClickListenerButtonsRestart = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.container, new StartFragment()).commit();
+                switch (v.getId()) {
+                    case R.id.button_new_game:
+                        fragmentManager.beginTransaction().replace(R.id.container, new StartFragment()).commit();
+                        break;
+                    case R.id.button_restart:
+                        Bundle bundle = new Bundle();
+                        bundle.putString(SelectModeFragment.GAME_MODE, mGameMode);
+                        if (mGameMode.equals(SelectModeFragment.GAME_MODE_SOLO)) {
+                            ArrayList<Player> teamUnique = mBundle.getParcelableArrayList(PlayerListFragment.UNIQUE_TEAM);
+                            for (Player p:teamUnique) {
+                                p.setScore(0);
+                            }
+                            bundle.putParcelableArrayList(PlayerListFragment.UNIQUE_TEAM, teamUnique);
+                        } else {
+                            ArrayList<Player> teamRed = mBundle.getParcelableArrayList(PlayerListFragment.TEAM_RED);
+                            for (Player p:teamRed) {
+                                p.setScore(0);
+                            }
+                            bundle.putParcelableArrayList(PlayerListFragment.TEAM_RED, teamRed);
+                            ArrayList<Player> teamBlue = mBundle.getParcelableArrayList(PlayerListFragment.TEAM_BLUE);
+                            for (Player p:teamBlue) {
+                                p.setScore(0);
+                            }
+                            bundle.putParcelableArrayList(PlayerListFragment.TEAM_BLUE, teamBlue);
+                        }
+                        ChallengeFragment challengeFragment = new ChallengeFragment();
+                        challengeFragment.setArguments(bundle);
+                        fragmentManager.beginTransaction().replace(R.id.container, challengeFragment).commit();
+                        break;
+                }
+
             }
-        });
+        };
+        mButtonRestart.setOnClickListener(onClickListenerButtonsRestart);
+        mButtonNewGame.setOnClickListener(onClickListenerButtonsRestart);
     }
 
     private Bitmap getBitmap(Player player) {

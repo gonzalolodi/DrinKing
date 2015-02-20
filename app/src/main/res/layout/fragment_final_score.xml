@@ -19,14 +19,6 @@
             android:scaleType="fitXY" />
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal">
-
-    </LinearLayout>
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,18 +30,33 @@
         android:paddingTop="20dp"
         android:paddingBottom="20dp" />
 
-    <Button
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/button_restart_game_text"
-        android:id="@+id/button_restart_game"
-        android:layout_gravity="bottom|center_horizontal"
-        style="@style/btnStyleArsenic" />
+        android:gravity="center_horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_new_game"
+            android:id="@+id/button_new_game"
+            android:layout_gravity="bottom|center_horizontal"
+            style="@style/btnStyleArsenic" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_restart_game_text"
+            android:id="@+id/button_restart"
+            style="@style/btnStyleArsenic" />
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/scrollView2" >
+        android:id="@+id/scrollView2"
+        android:paddingTop="10dp">
 
         <TextView
             android:layout_width="wrap_content"
