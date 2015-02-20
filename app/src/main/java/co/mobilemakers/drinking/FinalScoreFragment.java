@@ -4,6 +4,7 @@ package co.mobilemakers.drinking;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,6 +14,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.okhttp.Callback;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 
 /**
@@ -32,6 +42,7 @@ public class FinalScoreFragment extends Fragment {
     ImageView mImageViewWinner;
     TextView mTextViewTeamWinner;
     Button mButtonRestart;
+    TextView mTextViewQuotes;
 
     public FinalScoreFragment() {
         // Required empty public constructor
@@ -48,7 +59,53 @@ public class FinalScoreFragment extends Fragment {
         wiringUpWinnerView(rootView);
         prepareButtonRestart(rootView);
         displayingWinnerView();
+        prepareTextViewQuotesAndGetQuote(rootView);
         return rootView;
+    }
+
+    private void prepareTextViewQuotesAndGetQuote(View rootView) {
+        mTextViewQuotes = (TextView) rootView.findViewById(R.id.text_view_quotes);
+        try {
+            URL url = constructURLQuery();
+            Request request = new Request.Builder().url(url.toString()).build();
+            OkHttpClient client = new OkHttpClient();
+            client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(Request request, IOException e) {
+                    e.printStackTrace();
+                }
+
+                @Override
+                public void onResponse(Response response) throws IOException {
+                    final String responseString = response.body().string();
+
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mTextViewQuotes.setText(responseString);
+                        }
+                    });
+                }
+            });
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private URL constructURLQuery() throws MalformedURLException {
+        final String IHEART_QUOTES_BASE_URL = "iheartquotes.com";
+        final String API = "api";
+        final String VERSION_PATH = "v1";
+        final String QUOTES_ENDPOINT = "random";
+
+        Uri.Builder builder = new Uri.Builder();
+        builder.scheme("http").authority(IHEART_QUOTES_BASE_URL).
+                appendPath(API).
+                appendPath(VERSION_PATH).
+                appendPath(QUOTES_ENDPOINT);
+        Uri uri = builder.build();
+
+        return new URL(uri.toString());
     }
 
     private void wiringUpWinnerView(View rootView) {
