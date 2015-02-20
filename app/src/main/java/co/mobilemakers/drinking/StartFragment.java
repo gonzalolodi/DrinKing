@@ -60,6 +60,11 @@ public class StartFragment extends Fragment {
                     case R.id.button_exit:
                         System.exit(0);
                         break;
+                    case R.id.button_rules:
+                        fragmentManager.beginTransaction().
+                                replace(R.id.container, new RulesFragment()).addToBackStack(null).
+                                commit();
+
                 };
             }
         };
