@@ -27,7 +27,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center_horizontal"
-        android:id="@+id/radio_group_tool">
+        android:id="@+id/radio_group_tool"
+        android:checkedButton="@+id/radio_button_no_tools">
 
         <RadioButton
             android:layout_width="wrap_content"
@@ -57,8 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/radio_button_no_tools"
-            android:id="@+id/radio_button_no_tools"
-            android:checked="true" />
+            android:id="@id/radio_button_no_tools" />
 
     </RadioGroup>
 

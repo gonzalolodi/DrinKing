@@ -55,6 +55,7 @@ public class ChallengeFragment extends Fragment {
 
     public ChallengeFragment() {
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -63,7 +64,7 @@ public class ChallengeFragment extends Fragment {
         wireUpChallengeText(rootView);
         prepareChallengeText();
         mBundle = this.getArguments();
-        mGameMode= mBundle.getString(SelectModeFragment.GAME_MODE);
+        mGameMode = mBundle.getString(SelectModeFragment.GAME_MODE);
         wireUpPlayersView(rootView);
         if (mGameMode.equals(SelectModeFragment.GAME_MODE_SOLO)) {
             retrieveUniqueTeam();
@@ -215,8 +216,14 @@ public class ChallengeFragment extends Fragment {
 
     private void prepareChallengeText() {
         Challenge challenge = mChallenges.get(mRandom.nextInt(mChallenges.size()));
-        mTextViewChallenge.setText(challenge.getContent());
-        mTextViewChallengeTitle.setText(challenge.getName());
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        if (!(challenge.getTool().equals(challenge.NO_TOOLS))) {
+            while (!(sharedPreferences.getBoolean(challenge.getTool(), true))) {
+                challenge = mChallenges.get(mRandom.nextInt(mChallenges.size()));
+            }
+        }
+    mTextViewChallenge.setText(challenge.getContent());
+    mTextViewChallengeTitle.setText(challenge.getName());
     }
 
     public DatabaseHelper getDBHelper() {

@@ -15,6 +15,7 @@ import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,27 +61,32 @@ public class PlayerListFragment extends ListFragment {
         mButtonStartGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager = getFragmentManager();
-                ChallengeFragment challengeFragment = new ChallengeFragment();
-                ArrayList<Player> teamRed = new ArrayList<Player>();
-                ArrayList<Player> teamBlue = new ArrayList<Player>();
-                Bundle bundle = new Bundle();
-                bundle.putString(SelectModeFragment.GAME_MODE, mGameMode);
-                if (mGameMode.equals(SelectModeFragment.GAME_MODE_TEAM)) {
-                    for (Player p:mAdapter.mPlayers) {
-                        if (p.getTeam().equals(RED)) {
-                            teamRed.add(p);
-                        } else {
-                            teamBlue.add(p);
-                        }
-                    }
-                    bundle.putParcelableArrayList(TEAM_RED, teamRed);
-                    bundle.putParcelableArrayList(TEAM_BLUE, teamBlue);
+                if (mAdapter.mPlayers.size() < 2) {
+                    Toast.makeText(getActivity(), R.string.insufficient_players,
+                            Toast.LENGTH_LONG).show();
                 } else {
-                    bundle.putParcelableArrayList(UNIQUE_TEAM, mAdapter.mPlayers);
+                    FragmentManager fragmentManager = getFragmentManager();
+                    ChallengeFragment challengeFragment = new ChallengeFragment();
+                    ArrayList<Player> teamRed = new ArrayList<Player>();
+                    ArrayList<Player> teamBlue = new ArrayList<Player>();
+                    Bundle bundle = new Bundle();
+                    bundle.putString(SelectModeFragment.GAME_MODE, mGameMode);
+                    if (mGameMode.equals(SelectModeFragment.GAME_MODE_TEAM)) {
+                        for (Player p : mAdapter.mPlayers) {
+                            if (p.getTeam().equals(RED)) {
+                                teamRed.add(p);
+                            } else {
+                                teamBlue.add(p);
+                            }
+                        }
+                        bundle.putParcelableArrayList(TEAM_RED, teamRed);
+                        bundle.putParcelableArrayList(TEAM_BLUE, teamBlue);
+                    } else {
+                        bundle.putParcelableArrayList(UNIQUE_TEAM, mAdapter.mPlayers);
+                    }
+                    challengeFragment.setArguments(bundle);
+                    fragmentManager.beginTransaction().replace(R.id.container, challengeFragment).commit();
                 }
-                challengeFragment.setArguments(bundle);
-                fragmentManager.beginTransaction().replace(R.id.container, challengeFragment).commit();
             }
         });
     }
