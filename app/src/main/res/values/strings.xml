@@ -45,5 +45,7 @@
     <string name="button_restart_game_text">Restart game!</string>
     <string name="insufficient_players">Two or more players necessary to play!</string>
     <string name="insufficient_teams">Add at least one player of each team!</string>
+    <string name="winner_solo_text">The winner is %s!!!</string>
+    <string name="has_to_drink">Penalty sips for %s :</string>
 
 </resources>

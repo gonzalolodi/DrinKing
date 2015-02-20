@@ -59,8 +59,15 @@ public class FinalScoreFragment extends Fragment {
         if (mGameMode.equals(SelectModeFragment.GAME_MODE_SOLO)) {
             Player winner = mBundle.getParcelable(WINNER);
             mImageViewWinner.setImageBitmap(getBitmap(winner));
+            mTextViewTeamWinner.setText(String.format(getString(R.string.winner_solo_text), winner.getName()));
         } else {
-            mTextViewTeamWinner.setText(mBundle.getString(FinalScoreFragment.WINNER_TEAM));
+            String teamWinner = mBundle.getString(FinalScoreFragment.WINNER_TEAM);
+            mTextViewTeamWinner.setText(teamWinner);
+            if (teamWinner.equals(WINNER_TEAM_BLUE)) {
+                mImageViewWinner.setImageDrawable(getResources().getDrawable(R.drawable.keep_calm_blue));
+            } else {
+                mImageViewWinner.setImageDrawable(getResources().getDrawable(R.drawable.keep_calm_red));
+            }
         }
     }
 
@@ -70,7 +77,7 @@ public class FinalScoreFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.container, new StartFragment());
+                fragmentManager.beginTransaction().replace(R.id.container, new StartFragment()).commit();
             }
         });
     }
