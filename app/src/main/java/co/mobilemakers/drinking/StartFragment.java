@@ -22,6 +22,7 @@ public class StartFragment extends Fragment {
     Button mButtonStartGame;
     Button mButtonAddChallenge;
     Button mButtonRules;
+    Button mExit;
 
 
     public StartFragment() {
@@ -39,6 +40,7 @@ public class StartFragment extends Fragment {
         mButtonStartGame = (Button)rootView.findViewById(R.id.button_start_game);
         mButtonAddChallenge = (Button)rootView.findViewById(R.id.button_add_challenge);
         mButtonRules = (Button)rootView.findViewById(R.id.button_rules);
+        mExit = (Button) rootView.findViewById(R.id.button_exit);
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,6 +56,9 @@ public class StartFragment extends Fragment {
                         fragmentManager.beginTransaction().
                                 replace(R.id.container, new AddChallengeFragment()).addToBackStack(null).
                                 commit();
+                        break;
+                    case R.id.button_exit:
+                        System.exit(0);
                         break;
                 };
             }
